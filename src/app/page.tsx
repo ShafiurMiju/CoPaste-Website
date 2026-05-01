@@ -14,6 +14,8 @@ export default function Page() {
         <KeystrokeDemo />
         <Comparison />
         <HowItWorks />
+        <FirstLaunch />
+        <UsageGuide />
         <Privacy />
         <FAQ />
         <DownloadBanner />
@@ -43,12 +45,18 @@ function SiteHeader() {
           <a href="#how" className="hover:text-foreground transition">
             How it works
           </a>
+          <a href="#first-launch" className="hover:text-foreground transition">
+            Install
+          </a>
+          <a href="#using" className="hover:text-foreground transition">
+            Use
+          </a>
           <a href="#faq" className="hover:text-foreground transition">
             FAQ
           </a>
         </nav>
         <a
-          href="/Copaste_0.1.1.dmg"
+          href="/Copaste_0.1.7.dmg"
           download
           className="hidden sm:inline-flex items-center gap-2 rounded-md bg-accent text-white px-4 py-2 text-sm font-medium hover:bg-accent-hover transition"
         >
@@ -80,7 +88,7 @@ function Hero() {
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
-              href="/Copaste_0.1.1.dmg"
+              href="/Copaste_0.1.7.dmg"
               download
               className="inline-flex items-center gap-2 rounded-md bg-accent text-white px-6 py-3 text-base font-medium hover:bg-accent-hover transition shadow-sm"
             >
@@ -95,7 +103,7 @@ function Hero() {
             </a>
           </div>
           <p className="mt-5 text-sm text-muted">
-            Version 0.1.1 &middot; Requires macOS 13.0 or later &middot; ~1.7 MB
+            Version 0.1.7 &middot; Requires macOS 13.0 or later &middot; ~1.8 MB
           </p>
         </div>
         <div className="md:col-span-6">
@@ -826,6 +834,291 @@ function HowItWorks() {
   );
 }
 
+function FirstLaunch() {
+  return (
+    <section id="first-launch" className="border-t border-rule">
+      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <div className="max-w-2xl">
+          <p className="text-sm uppercase tracking-[0.18em] text-muted mb-3">
+            First launch
+          </p>
+          <h2 className="serif text-3xl md:text-4xl font-semibold tracking-tight">
+            Opening Copaste the first time.
+          </h2>
+          <p className="mt-4 text-muted">
+            macOS will show a &ldquo;developer cannot be verified&rdquo; warning
+            the first time you open Copaste. That&rsquo;s not a bug &mdash;
+            it&rsquo;s Gatekeeper checking who signed the app. Copaste uses a
+            self-signed certificate instead of a paid Apple Developer ID, so
+            macOS asks you to confirm before opening it. After you say yes
+            once, Copaste opens normally forever.
+          </p>
+        </div>
+
+        <div className="mt-12 grid md:grid-cols-2 gap-6">
+          <div className="rounded-xl border border-rule bg-card p-7">
+            <p className="text-xs uppercase tracking-[0.14em] text-muted mb-2">
+              macOS 13 &middot; 14
+            </p>
+            <h3 className="serif text-xl font-semibold tracking-tight">
+              Ventura &middot; Sonoma
+            </h3>
+            <ol className="mt-5 space-y-3 text-[15px] text-foreground">
+              <Step n={1}>
+                Drag <strong>Copaste.app</strong> from the DMG into your{" "}
+                <strong>Applications</strong> folder.
+              </Step>
+              <Step n={2}>Open Finder &rarr; Applications.</Step>
+              <Step n={3}>
+                <strong>Right-click</strong> (or Control-click) Copaste{" "}
+                &rarr; <strong>Open</strong>.
+              </Step>
+              <Step n={4}>
+                Click <strong>Open</strong> in the warning dialog.
+              </Step>
+              <Step n={5}>
+                Done. Copaste opens normally from now on, and macOS won&rsquo;t
+                ask again.
+              </Step>
+            </ol>
+          </div>
+
+          <div className="rounded-xl border border-rule bg-card p-7">
+            <p className="text-xs uppercase tracking-[0.14em] text-muted mb-2">
+              macOS 15 or later
+            </p>
+            <h3 className="serif text-xl font-semibold tracking-tight">
+              Sequoia
+            </h3>
+            <ol className="mt-5 space-y-3 text-[15px] text-foreground">
+              <Step n={1}>
+                Drag <strong>Copaste.app</strong> from the DMG into your{" "}
+                <strong>Applications</strong> folder.
+              </Step>
+              <Step n={2}>
+                Try to open Copaste &mdash; macOS will block it with a warning.
+              </Step>
+              <Step n={3}>
+                Open <strong>System Settings &rarr; Privacy &amp; Security</strong>.
+              </Step>
+              <Step n={4}>
+                Scroll down to &ldquo;Copaste was blocked…&rdquo; and click{" "}
+                <strong>Open Anyway</strong>.
+              </Step>
+              <Step n={5}>
+                Confirm with your Mac password, then click{" "}
+                <strong>Open</strong> in the next dialog.
+              </Step>
+              <Step n={6}>
+                Done. Copaste opens normally from now on, and macOS won&rsquo;t
+                ask again.
+              </Step>
+            </ol>
+          </div>
+        </div>
+
+        <div className="mt-10 max-w-3xl rounded-lg border border-rule bg-card px-6 py-5">
+          <p className="text-[15px] text-muted">
+            <strong className="text-foreground">Is it safe?</strong> The
+            warning is about <em>who signed</em> the app, not about what the
+            app does. Copaste runs entirely on your Mac &mdash; no servers, no
+            sync, no telemetry &mdash; and stores everything in a local SQLite
+            file under your account. See{" "}
+            <a href="#privacy" className="underline hover:text-foreground">
+              Privacy
+            </a>{" "}
+            for the full picture.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Step({ n, children }: { n: number; children: React.ReactNode }) {
+  return (
+    <li className="flex gap-3">
+      <span className="shrink-0 inline-flex items-center justify-center size-6 rounded-full bg-accent text-white text-[12px] font-semibold">
+        {n}
+      </span>
+      <span className="leading-snug">{children}</span>
+    </li>
+  );
+}
+
+function UsageGuide() {
+  return (
+    <section id="using" className="border-t border-rule bg-card/60">
+      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <div className="max-w-2xl">
+          <p className="text-sm uppercase tracking-[0.18em] text-muted mb-3">
+            Using Copaste
+          </p>
+          <h2 className="serif text-3xl md:text-4xl font-semibold tracking-tight">
+            From install to muscle memory.
+          </h2>
+          <p className="mt-4 text-muted">
+            Once Copaste is in your menu bar, here&rsquo;s the full walkthrough
+            &mdash; setup, daily flow, and the handful of power features
+            tucked into the menu.
+          </p>
+        </div>
+
+        <div className="mt-12 grid lg:grid-cols-3 gap-6">
+          <GuideCard
+            eyebrow="One-time setup"
+            title="Get Copaste ready"
+          >
+            <Step n={1}>
+              <strong>Grant Accessibility.</strong> Open System Settings
+              &rarr; Privacy &amp; Security &rarr; Accessibility, then toggle
+              Copaste ON. Required so Copaste can paste into other apps.
+            </Step>
+            <Step n={2}>
+              <strong>Launch at Login</strong> (optional). Click the menu bar
+              icon &rarr; Launch at Login. Copaste will be ready every time
+              you boot up.
+            </Step>
+            <Step n={3}>
+              <strong>Customize the shortcut</strong> (optional). Menu bar
+              &rarr; Change Shortcut… &rarr; press your preferred combo. Default
+              is <Kbd>⌘</Kbd> <Kbd>⇧</Kbd> <Kbd>V</Kbd>.
+            </Step>
+          </GuideCard>
+
+          <GuideCard
+            eyebrow="Day to day"
+            title="The 5-second flow"
+          >
+            <Step n={1}>
+              <strong>Press</strong> <Kbd>⌘</Kbd> <Kbd>⇧</Kbd> <Kbd>V</Kbd>{" "}
+              from anywhere &mdash; the popup appears.
+            </Step>
+            <Step n={2}>
+              <strong>Type</strong> to filter, or use{" "}
+              <Kbd>↑</Kbd> <Kbd>↓</Kbd> to scroll through your history.
+            </Step>
+            <Step n={3}>
+              <strong>Hit</strong> <Kbd>↵</Kbd> &mdash; the clip pastes into
+              the app you were just in.
+            </Step>
+            <Step n={4}>
+              <strong>Pin</strong> (<Kbd>⌘</Kbd> <Kbd>P</Kbd>) clips you
+              reuse. <strong>Delete</strong> with <Kbd>⌘</Kbd> <Kbd>⌫</Kbd>.
+            </Step>
+            <Step n={5}>
+              Switch tabs to browse <strong>Text</strong>,{" "}
+              <strong>Images</strong>, or <strong>Groups</strong>.
+            </Step>
+          </GuideCard>
+
+          <GuideCard
+            eyebrow="From the menu bar"
+            title="Power features"
+          >
+            <Step n={1}>
+              <strong>Take Screenshot…</strong> &mdash; capture any region of
+              your screen and drop it straight into your clipboard history.
+            </Step>
+            <Step n={2}>
+              <strong>Always on Top</strong> &mdash; keep the popup floating
+              above other windows for reference snippets.
+            </Step>
+            <Step n={3}>
+              <strong>Storage Limits…</strong> &mdash; tune how many text and
+              image clips Copaste keeps. Pinned clips are never trimmed.
+            </Step>
+            <Step n={4}>
+              <strong>Clear Unpinned History</strong> &mdash; one click wipes
+              everything except your pins.
+            </Step>
+            <Step n={5}>
+              <strong>Reset Accessibility Permission…</strong> &mdash; the
+              fix-it button if pasting ever stops working after a macOS or
+              Copaste upgrade.
+            </Step>
+          </GuideCard>
+        </div>
+
+        <div className="mt-10 rounded-xl border border-rule bg-card p-6 md:p-7">
+          <p className="text-xs uppercase tracking-[0.14em] text-muted mb-3">
+            Cheat sheet
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-3 text-[15px]">
+            <ShortcutRow keys={["⌘", "⇧", "V"]} label="Open the popup" />
+            <ShortcutRow keys={["↑", "↓"]} label="Scroll through clips" />
+            <ShortcutRow keys={["↵"]} label="Paste selected clip" />
+            <ShortcutRow keys={["esc"]} label="Close the popup" />
+            <ShortcutRow keys={["⌘", "P"]} label="Pin / unpin" />
+            <ShortcutRow keys={["⌘", "⌫"]} label="Delete clip" />
+            <ShortcutRow keys={["⌘", "A"]} label="Select all" />
+            <ShortcutRow keys={["⌥", "↑"]} keys2={["⌥", "↓"]} label="Reorder pins" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GuideCard({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-xl border border-rule bg-card p-7 flex flex-col">
+      <p className="text-xs uppercase tracking-[0.14em] text-muted mb-2">
+        {eyebrow}
+      </p>
+      <h3 className="serif text-xl font-semibold tracking-tight">{title}</h3>
+      <ol className="mt-5 space-y-3.5 text-[15px] text-foreground">
+        {children}
+      </ol>
+    </div>
+  );
+}
+
+function Kbd({ children }: { children: React.ReactNode }) {
+  return (
+    <kbd className="inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 rounded-[5px] border border-rule bg-background text-[12px] font-medium text-foreground align-middle">
+      {children}
+    </kbd>
+  );
+}
+
+function ShortcutRow({
+  keys,
+  keys2,
+  label,
+}: {
+  keys: string[];
+  keys2?: string[];
+  label: string;
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1 shrink-0">
+        {keys.map((k, i) => (
+          <Kbd key={i}>{k}</Kbd>
+        ))}
+        {keys2 && (
+          <>
+            <span className="text-muted text-[12px] mx-1">/</span>
+            {keys2.map((k, i) => (
+              <Kbd key={i}>{k}</Kbd>
+            ))}
+          </>
+        )}
+      </div>
+      <span className="text-muted">{label}</span>
+    </div>
+  );
+}
+
 function KeystrokeDemo() {
   return (
     <section className="border-t border-rule bg-card/60">
@@ -1004,7 +1297,7 @@ function Privacy() {
     },
   ];
   return (
-    <section className="border-t border-rule bg-[#1a1814] text-[#faf6ec]">
+    <section id="privacy" className="border-t border-rule bg-[#1a1814] text-[#faf6ec]">
       <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
         <div className="max-w-2xl">
           <p className="text-sm uppercase tracking-[0.18em] text-[#d6cfc1] mb-3">
@@ -1110,6 +1403,14 @@ function FAQ() {
       q: "Why does it ask for Accessibility permission?",
       a: "Pasting into another app on macOS requires Accessibility access. Copaste only uses it to deliver the clip you select.",
     },
+    {
+      q: "Why does macOS warn about Copaste on first launch?",
+      a: "Copaste is signed with a self-signed certificate, not an Apple Developer ID — that’s how it stays free. Gatekeeper doesn’t recognise the signature, so it asks you to confirm before opening. See “First launch” above for the exact steps; after you confirm once, Copaste opens normally forever.",
+    },
+    {
+      q: "Is it safe to install despite the warning?",
+      a: "Yes. The warning is about who signed the app, not what the app does. Copaste runs entirely on your Mac, makes no network calls, and stores everything in a single SQLite file under your account. You can inspect (and delete) that file at any time.",
+    },
   ];
   return (
     <section id="faq" className="border-t border-rule">
@@ -1149,17 +1450,17 @@ function DownloadBanner() {
             Get Copaste for your Mac.
           </h2>
           <p className="mt-3 text-[#d6cfc1]">
-            A 1.7 MB download. No installer. No account. Just drag it to
+            A 1.8 MB download. No installer. No account. Just drag it to
             Applications and you&rsquo;re done.
           </p>
         </div>
         <a
-          href="/Copaste_0.1.1.dmg"
+          href="/Copaste_0.1.7.dmg"
           download
           className="inline-flex items-center gap-3 rounded-md bg-[#faf6ec] text-[#1a1814] px-6 py-3.5 text-base font-medium hover:bg-white transition"
         >
           <DownloadIcon />
-          Download Copaste 0.1.1
+          Download Copaste 0.1.7
         </a>
       </div>
     </section>
@@ -1184,7 +1485,7 @@ function SiteFooter() {
             FAQ
           </a>
           <a
-            href="/Copaste_0.1.1.dmg"
+            href="/Copaste_0.1.7.dmg"
             download
             className="hover:text-foreground transition"
           >
