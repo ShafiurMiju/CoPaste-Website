@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Copaste — A clipboard manager for macOS",
+  title: "Copaste · Your clipboard, remembered.",
   description:
-    "Copaste is a lightweight macOS clipboard manager that remembers everything you copy — text, images, and screenshots — and brings it back with a single keystroke.",
+    "A quiet macOS clipboard manager that remembers everything you copy — text, images, and screenshots — and brings any of it back with ⌘⇧V.",
 };
 
 export default function RootLayout({

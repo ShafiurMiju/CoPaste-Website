@@ -48,7 +48,7 @@ function SiteHeader() {
           </a>
         </nav>
         <a
-          href="/Copaste.dmg"
+          href="/Copaste_0.1.1.dmg"
           download
           className="hidden sm:inline-flex items-center gap-2 rounded-md bg-accent text-white px-4 py-2 text-sm font-medium hover:bg-accent-hover transition"
         >
@@ -80,7 +80,7 @@ function Hero() {
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
-              href="/Copaste.dmg"
+              href="/Copaste_0.1.1.dmg"
               download
               className="inline-flex items-center gap-2 rounded-md bg-accent text-white px-6 py-3 text-base font-medium hover:bg-accent-hover transition shadow-sm"
             >
@@ -95,7 +95,7 @@ function Hero() {
             </a>
           </div>
           <p className="mt-5 text-sm text-muted">
-            Version 0.1.0 &middot; Requires macOS 13.0 or later &middot; ~1.2 MB
+            Version 0.1.1 &middot; Requires macOS 13.0 or later &middot; ~1.7 MB
           </p>
         </div>
         <div className="md:col-span-6">
@@ -1149,17 +1149,17 @@ function DownloadBanner() {
             Get Copaste for your Mac.
           </h2>
           <p className="mt-3 text-[#d6cfc1]">
-            A 1.2 MB download. No installer. No account. Just drag it to
+            A 1.7 MB download. No installer. No account. Just drag it to
             Applications and you&rsquo;re done.
           </p>
         </div>
         <a
-          href="/Copaste.dmg"
+          href="/Copaste_0.1.1.dmg"
           download
           className="inline-flex items-center gap-3 rounded-md bg-[#faf6ec] text-[#1a1814] px-6 py-3.5 text-base font-medium hover:bg-white transition"
         >
           <DownloadIcon />
-          Download Copaste 0.1.0
+          Download Copaste 0.1.1
         </a>
       </div>
     </section>
@@ -1184,7 +1184,7 @@ function SiteFooter() {
             FAQ
           </a>
           <a
-            href="/Copaste.dmg"
+            href="/Copaste_0.1.1.dmg"
             download
             className="hover:text-foreground transition"
           >
