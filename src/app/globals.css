@@ -47,3 +47,55 @@ body {
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: -0.005em;
 }
+
+@keyframes key-press {
+  0%, 70%, 100% { transform: translateY(0); box-shadow: 0 2px 0 rgba(0,0,0,0.12); }
+  35% { transform: translateY(2px); box-shadow: 0 0 0 rgba(0,0,0,0.12); }
+}
+
+@keyframes popup-rise {
+  0%, 20% { opacity: 0; transform: translateY(8px) scale(0.985); }
+  35%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes selection-cycle {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(0); }
+  50% { transform: translateY(34px); }
+  75% { transform: translateY(68px); }
+}
+
+@keyframes typewriter {
+  0%, 60% { width: 0; }
+  95%, 100% { width: 100%; }
+}
+
+@keyframes caret-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.anim-key {
+  animation: key-press 3s ease-in-out infinite;
+}
+.anim-key.delay-1 { animation-delay: 0.1s; }
+.anim-key.delay-2 { animation-delay: 0.2s; }
+
+.anim-popup {
+  animation: popup-rise 3s ease-out infinite;
+}
+
+.anim-cycle {
+  animation: selection-cycle 3s ease-in-out infinite;
+}
+
+.anim-type {
+  animation: typewriter 3s steps(28, end) infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.anim-caret {
+  animation: caret-blink 1s steps(1) infinite;
+}

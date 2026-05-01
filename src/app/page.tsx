@@ -11,7 +11,10 @@ export default function Page() {
         <Hero />
         <Features />
         <Preview />
+        <KeystrokeDemo />
+        <Comparison />
         <HowItWorks />
+        <Privacy />
         <FAQ />
         <DownloadBanner />
       </main>
@@ -670,7 +673,7 @@ function Features() {
   const items = [
     {
       title: "Hotkey-driven",
-      body: "Summon Copaste from anywhere with a global shortcut. Default ⌃⇧V — fully customizable.",
+      body: "Summon Copaste from anywhere with a global shortcut. Default ⌘⇧V — rebind it to anything from the menu bar.",
       icon: <KeyIcon />,
     },
     {
@@ -788,8 +791,8 @@ function HowItWorks() {
     },
     {
       n: "03",
-      title: "Press ⌃⇧V",
-      body: "Bring up the popup, pick a clip, hit return. It pastes into whatever app you were using — done.",
+      title: "Press ⌘⇧V",
+      body: "Bring up the popup, pick a clip, hit return. It pastes into whatever app you were using — done. Want a different combo? Change it from the menu bar.",
     },
   ];
   return (
@@ -820,6 +823,264 @@ function HowItWorks() {
         </ol>
       </div>
     </section>
+  );
+}
+
+function KeystrokeDemo() {
+  return (
+    <section className="border-t border-rule bg-card/60">
+      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <div className="max-w-2xl">
+          <p className="text-sm uppercase tracking-[0.18em] text-muted mb-3">
+            In motion
+          </p>
+          <h2 className="serif text-3xl md:text-4xl font-semibold tracking-tight">
+            Three keys. Two seconds.
+          </h2>
+          <p className="mt-4 text-muted">
+            Press the shortcut anywhere, pick a clip, hit return — the popup
+            disappears and your text is in the app you were already using.
+          </p>
+        </div>
+
+        <div className="mt-14 grid md:grid-cols-3 gap-8 items-stretch">
+          <Frame label="1 · Press the shortcut">
+            <div className="flex items-center justify-center gap-2 h-full py-6">
+              <DemoKey label="⌘" delay={0} />
+              <DemoKey label="⇧" delay={1} />
+              <DemoKey label="V" delay={2} />
+            </div>
+          </Frame>
+          <Frame label="2 · Pick a clip">
+            <div className="relative h-full p-3">
+              <div className="anim-popup rounded-md border border-black/10 bg-white shadow-sm overflow-hidden">
+                <div className="px-2 py-1 border-b border-black/[0.06] flex items-center gap-1">
+                  <span className="size-1.5 rounded-full bg-[#ff5f57]" />
+                  <span className="size-1.5 rounded-full bg-[#febc2e]" />
+                  <span className="size-1.5 rounded-full bg-[#28c840]" />
+                </div>
+                <div className="relative p-2">
+                  <div className="absolute left-2 right-2 top-2 h-7 rounded-[5px] bg-[#cfe0f5] anim-cycle" />
+                  <div className="relative space-y-2">
+                    {[
+                      "https://copaste.app",
+                      "rgba(138, 75, 31, 0.92)",
+                      "alex.rivera@example.com",
+                    ].map((t, i) => (
+                      <div
+                        key={i}
+                        className="h-7 px-2 flex items-center text-[12px] text-neutral-800"
+                      >
+                        <span className="truncate">{t}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Frame>
+          <Frame label="3 · It pastes">
+            <div className="h-full p-4 flex items-center">
+              <div className="w-full rounded-md border border-black/10 bg-white shadow-sm p-3 text-[13px] font-mono text-neutral-800">
+                <span className="text-neutral-400 select-none">$ </span>
+                <span className="anim-type align-middle">
+                  https://copaste.app
+                </span>
+                <span className="anim-caret inline-block w-px h-3.5 bg-neutral-700 align-middle ml-0.5" />
+              </div>
+            </div>
+          </Frame>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Frame({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-xl border border-rule bg-card overflow-hidden flex flex-col">
+      <div className="flex-1 min-h-[160px] bg-[#fbf8f3]">{children}</div>
+      <div className="px-4 py-3 border-t border-rule text-[13px] text-muted">
+        {label}
+      </div>
+    </div>
+  );
+}
+
+function DemoKey({ label, delay }: { label: string; delay: 0 | 1 | 2 }) {
+  return (
+    <span
+      className={`anim-key ${delay === 1 ? "delay-1" : delay === 2 ? "delay-2" : ""} inline-flex items-center justify-center min-w-12 h-12 px-3 rounded-lg border border-black/15 bg-white text-xl font-medium text-neutral-800`}
+    >
+      {label}
+    </span>
+  );
+}
+
+function Comparison() {
+  const rows = [
+    { label: "Remembers what you copy", os: "Just the last thing", cp: "Your last 100+ items" },
+    { label: "Search through history", os: "—", cp: "Type to filter" },
+    { label: "Pin frequent clips", os: "—", cp: "⌘P to pin, ⌘⌫ to delete" },
+    { label: "Capture images", os: "—", cp: "Text, images, screenshots" },
+    { label: "Quick keyboard access", os: "—", cp: "⌘⇧V from anywhere (rebindable)" },
+    { label: "Stays on your Mac", os: "Yes", cp: "Yes — local SQLite only" },
+  ];
+  return (
+    <section className="border-t border-rule">
+      <div className="mx-auto max-w-5xl px-6 py-20 md:py-24">
+        <div className="max-w-2xl">
+          <p className="text-sm uppercase tracking-[0.18em] text-muted mb-3">
+            Compared
+          </p>
+          <h2 className="serif text-3xl md:text-4xl font-semibold tracking-tight">
+            Built for what macOS forgot.
+          </h2>
+          <p className="mt-4 text-muted">
+            The default clipboard remembers exactly one thing. Copaste fills
+            the gap — quietly, locally, and with the same shortcut feel you
+            already have.
+          </p>
+        </div>
+        <div className="mt-10 rounded-xl border border-rule bg-card overflow-hidden">
+          <div className="grid grid-cols-[1.4fr_1fr_1fr] text-[15px]">
+            <div className="px-5 py-4 font-semibold border-b border-rule">
+              Feature
+            </div>
+            <div className="px-5 py-4 font-medium text-muted border-b border-l border-rule">
+              macOS clipboard
+            </div>
+            <div className="px-5 py-4 font-semibold text-accent border-b border-l border-rule">
+              Copaste
+            </div>
+            {rows.map((r, i) => (
+              <div key={r.label} className="contents">
+                <div
+                  className={`px-5 py-4 ${i < rows.length - 1 ? "border-b border-rule" : ""}`}
+                >
+                  {r.label}
+                </div>
+                <div
+                  className={`px-5 py-4 text-muted border-l border-rule ${i < rows.length - 1 ? "border-b" : ""}`}
+                >
+                  {r.os}
+                </div>
+                <div
+                  className={`px-5 py-4 border-l border-rule ${i < rows.length - 1 ? "border-b" : ""}`}
+                >
+                  {r.cp}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Privacy() {
+  const pillars = [
+    {
+      icon: <LockIcon />,
+      title: "Stays on your Mac",
+      body: "Clips live in a single SQLite file under your account. Nothing is uploaded, synced, or shared.",
+    },
+    {
+      icon: <EyeIcon />,
+      title: "Only what you copy",
+      body: "Copaste reads from the system pasteboard. It does not log keystrokes, screen contents, or anything else.",
+    },
+    {
+      icon: <NoSignalIcon />,
+      title: "No accounts, no telemetry",
+      body: "There’s nothing to sign up for. The app makes no network calls of its own — not even for analytics.",
+    },
+  ];
+  return (
+    <section className="border-t border-rule bg-[#1a1814] text-[#faf6ec]">
+      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <div className="max-w-2xl">
+          <p className="text-sm uppercase tracking-[0.18em] text-[#d6cfc1] mb-3">
+            Privacy
+          </p>
+          <h2 className="serif text-3xl md:text-4xl font-semibold tracking-tight">
+            What we keep, and where.
+          </h2>
+          <p className="mt-4 text-[#d6cfc1]">
+            A clipboard quietly accumulates the most sensitive things you
+            handle &mdash; passwords, tokens, drafts, addresses. Copaste’s
+            defaults assume that.
+          </p>
+        </div>
+        <div className="mt-12 grid sm:grid-cols-3 gap-px bg-white/10 border border-white/10 rounded-xl overflow-hidden">
+          {pillars.map((p) => (
+            <div key={p.title} className="bg-[#22201c] p-7">
+              <div className="size-10 rounded-md bg-white/5 text-[#f0c890] inline-flex items-center justify-center">
+                {p.icon}
+              </div>
+              <h3 className="mt-5 text-lg font-semibold tracking-tight">
+                {p.title}
+              </h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-[#d6cfc1]">
+                {p.body}
+              </p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-sm text-[#a8a094]">
+          Database location:{" "}
+          <code className="font-mono text-[#d6cfc1]">
+            ~/Library/Application Support/Copaste/clips.sqlite
+          </code>
+          . Open it, inspect it, delete it — it’s your file.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function EyeIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
+function NoSignalIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+      <path d="M8.5 16.05a6 6 0 0 1 7 0" />
+      <path d="M12 20h.01" />
+      <path d="m3 3 18 18" />
+    </svg>
   );
 }
 
